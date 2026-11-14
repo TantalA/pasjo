@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="pl"> 
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Przychodnia weterynaryjny PasjoVet w Rudzie Śląskiej (Wirek) i w Zabrzu: badania, szczepienia, zabiegi i pomoc nagła. Godziny otwarcia i kontakt."> 
+<title>Przychodnia Weterynaryjna PasjoVet</title>
+<script>
+try { var t = localStorage.getItem('pasjovet-theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Nunito+Sans:wght@400;600&display=swap">
+<style>
+/* Układ: jednokolumnowa strona usługowa, wąska nawigacja, hero z ilustracją, siatka usług, pasek liczb, blok godzin i kontaktu, końcowe wezwanie do rezerwacji */
+:root {
+  --bg: #ffffff;
+  --surface: #F5F7F4;
+  --fg: #202820;
+  --muted: #687468;
+  --line: #dde5da;
+  --accent: #3EAE32;
+  --accent-dark: #245F1D;
+  --accent-text: #245F1D;
+  --accent-ink: #10240d;
+  --accent-soft: #E8F5E6;
+  --warm: var(--accent);
+  --ok: #245F1D;
+  --off: #b4482f;
+  --btn-hover-ink: #ffffff; 
+  --font-display: "Bricolage Grotesque", "Trebuchet MS", sans-serif;
+  --font-body: "Nunito Sans", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121812;
+    --surface: #1a221a;
+    --fg: #eaf2e8;
+    --muted: #9aa99a;
+    --line: #2c382b;
+    --accent: #5cc94f;
+    --accent-dark: #3EAE32;
+    --accent-text: #8be07e;
+    --accent-ink: #0d1f0b;
+    --accent-soft: #1d3a1a;
+    --warm: var(--accent);
+    --ok: #55c98a;
+    --btn-hover-ink: #0d1f0b; 
+    --off: #f08a70;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121812;
+  --surface: #1a221a;
+  --fg: #eaf2e8;
+  --muted: #9aa99a;
+  --line: #2c382b;
+  --accent: #5cc94f;
+    --accent-dark: #3EAE32;
+    --accent-text: #8be07e;
+  --accent-ink: #0d1f0b;
+  --accent-soft: #1d3a1a;
+  --warm: var(--accent);
+  --ok: #55c98a;
+  --btn-hover-ink: #0d1f0b; 
+  --off: #f08a70;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; line-height: 1.12; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 3px; border-radius: 6px; }
+
+.wrap { max-width: 1040px; margin-inline: auto; }
+
+/* Nawigacja */
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 20px; text-decoration: none; }
+.brand img { width: 56px; height: 56px; flex: none; background: #fff; border-radius: 12px; padding: 3px; border: 1px solid var(--line); }
+.menu { display: flex; gap: 24px; font-size: 15px; font-weight: 600; color: var(--muted); }
+.menu a { text-decoration: none; padding-block: 4px; border-bottom: 2px solid transparent; }
+.menu a:hover { color: var(--fg); border-bottom-color: var(--accent); }
+
+.btn { display: inline-block; font-family: var(--font-body); font-weight: 600; font-size: 15px; padding: 11px 20px; border-radius: 10px; text-decoration: none; border: 1.5px solid var(--accent); background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.btn:hover { background: var(--accent-dark); border-color: var(--accent-dark); color: var(--btn-hover-ink); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--line); }
+.btn.ghost:hover {background: transparent; color: var(--fg); border-color: var(--accent); }
+
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 14px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); font-family: var(--font-body); font-size: 14px; font-weight: 600; cursor: pointer; }
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle svg { width: 18px; height: 18px; flex: none; }
+@media (max-width: 420px) { .theme-toggle .label { display: none; } .theme-toggle { padding: 0 12px; } }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; background: var(--accent-soft); border-radius: 24px; padding: clamp(24px, 5vw, 56px); margin-top: 8px; }
+.hero > * { min-width: 0; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 14px; }
+.hero h1 { font-size: clamp(32px, 5vw, 52px); letter-spacing: -0.01em; }
+.hero p.lead { color: var(--muted); font-size: 18px; margin-top: 16px; max-width: 46ch; }
+.cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+.hero svg { width: 100%; height: auto; max-width: 100%; display: block; }
+
+/* Sekcje */
+section { padding-block: clamp(40px, 7vw, 72px) 0; }
+.sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.sec-head h2 { font-size: clamp(26px, 3.5vw, 34px); }
+.sec-head p { color: var(--muted); max-width: 44ch; }
+
+.services { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.service { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.service .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); display: grid; place-items: center; color: var(--accent-text); } 
+.service .ico svg { width: 24px; height: 24px; }
+.service h3 { font-size: 18px; }
+.service p { color: var(--muted); font-size: 15px; }
+
+/* Liczby */
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.fact { border-top: 3px solid var(--warm); padding-top: 14px; }
+.fact b { display: block; font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 46px); line-height: 1; font-weight: 700; font-variant-numeric: tabular-nums; }
+.fact span { color: var(--muted); font-size: 15px; }
+
+/* Godziny i kontakt */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px; min-width: 0; }
+.card h4 { font-size: 20px; display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.card h4 svg { width: 22px; height: 22px; color: var(--accent-text); flex: none; }
+.hours { list-style: none; margin: 0; padding: 0; }
+.hours li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 12px; padding-block: 9px; border-bottom: 1px dashed var(--line); font-variant-numeric: tabular-nums; } 
+.hours li:last-child { border-bottom: 0; }
+.hours li.today { font-weight: 600; color: var(--fg); }
+.hours li span:first-child { color: var(--muted); }
+.hours li.today span:first-child { color: var(--accent-text); }
+.status { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; margin-top: 16px; }
+.status i { width: 10px; height: 10px; border-radius: 50%; background: var(--muted); display: inline-block; }
+.status.open { color: var(--ok); }
+.status.open i { background: var(--ok); }
+.status.closed { color: var(--off); }
+.status.closed i { background: var(--off); }
+.locations { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 24px; } 
+.loc { display: grid; grid-row: span 4; grid-template-rows: subgrid; gap: 16px; min-width: 0; }
+.loc-title { font-size: 22px; color: var(--accent-text); }
+.contact-lines { display: grid; gap: 14px; }
+.contact-lines div { display: grid; gap: 2px; }
+.contact-lines small { color: var(--muted); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+.contact-lines strong { font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+
+/*Sekcja map */ 
+.map-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; overflow: hidden; background: var(--accent-soft); border: 1px solid var(--line); display: grid; place-items: center; text-align: center; padding: 16px; } /* ZMIANA 7: usunięto min-height: 170px. Przy aspect-ratio rozpychało ramkę poza kartę na najwęższych telefonach (320 px) */
+.map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-placeholder { display: grid; gap: 8px; justify-items: center; color: var(--muted); font-size: 14px; max-width: 32ch; }
+.map-placeholder svg { width: 28px; height: 28px; color: var(--accent-text); }
+.map-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.map-actions .btn { padding: 9px 16px; font-size: 14px; }
+
+/*sekcja sm */
+.social { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+.social-title { font-size: 18px; }
+.social-list { display: flex; flex-wrap: wrap; gap: 10px; }
+.social-btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border-radius: 10px; border: 1.5px solid var(--line); background: var(--surface); color: var(--fg); font-weight: 600; font-size: 15px; text-decoration: none; }
+.social-btn svg { width: 20px; height: 20px; flex: none; }
+.social-btn:hover { border-color: var(--accent); color: var(--accent-text); }
+
+/* Rezerwacja */
+.book { background: var(--fg); color: var(--bg); border-radius: 24px; padding: clamp(28px, 5vw, 52px); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.book h2 { font-size: clamp(24px, 3.5vw, 34px); max-width: 20ch; }
+.book p { opacity: 0.8; margin-top: 8px; max-width: 46ch; }
+.book .btn { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+footer { padding-block: 36px 40px; color: var(--muted); font-size: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .locations { grid-template-columns: 1fr; }
+  .hero { grid-template-columns: 1fr; }
+  .hero svg { max-width: 380px; margin-inline: auto; }
+}
+@media (max-width: 620px) {
+  .menu { order: 3; width: 100%; justify-content: center; gap: 24px; padding-top: 6px; border-top: 1px solid var(--line); } 
+  .menu a { padding-block: 8px; } 
+  .brand { flex: 1 1 0; min-width: 0; font-size: 17px; } 
+  .nav-actions { flex: none; }
+  .services, .facts { grid-template-columns: 1fr; } 
+  .card { padding: 20px; }
+  .facts { gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+<div class="wrap">
+  <header class="nav">
+    <a class="brand" href="#top" id="top">
+      <img src="logo.png" alt="Logo gabinetu: pies i kot w sercu" width="56" height="56">
+      Przychodnia Weterynaryjna PasjoVet
+    </a>
+    <nav class="menu" aria-label="Menu główne">
+      <a href="#o-nas">O nas</a>
+      <a href="#uslugi">Usługi</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+     
+    <div class="nav-actions">
+       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Zmień motyw strony"></button>
+      <!-- <a class="btn" href="#rezerwacja">Umów wizytę</a>  future add calendar -->
+    </div> 
+   
+  </header>
+
+  <main>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Weterynarz dla psów, kotów i małych zwierząt</p>
+        <h1>Zdrowie twojego zwierzaka w dobrych rękach</h1>
+        <p class="lead">Diagnostyka, leczenie i profilaktyka w jednym miejscu. Przyjmujemy z umówieniem i w nagłych przypadkach.</p>
+        <div class="cta-row">
+          <!-- <a class="btn" href="#rezerwacja">Umów wizytę</a> przycisk rezerwacji w pierwszym bloku future-->
+          <a class="btn" href="tel:+48323401048">Zadzwoń: Ruda Śląska</a> 
+          <a class="btn" href="tel:+48730150991">Zadzwoń: Zabrze</a> 
+        </div>
+      </div>
+       <svg viewBox="0 0 400 320" role="img" aria-label="Ilustracja psa i kota siedzących obok siebie">
+        <circle cx="200" cy="170" r="140" fill="var(--surface)"/>
+        <path d="M118 262 C108 214 118 168 148 148 C140 128 146 104 164 98 L166 70 L184 88 C196 84 212 84 222 90 L240 72 L242 100 C262 110 266 138 258 152 C284 172 290 222 278 262 Z" fill="#e0a65b"/>
+        <path d="M150 112 C142 128 146 150 160 156 C158 140 156 124 150 112 Z" fill="#b97b35"/>
+        <ellipse cx="190" cy="132" rx="26" ry="20" fill="#f6dcb4"/>
+        <circle cx="178" cy="124" r="4" fill="#16303a"/>
+        <circle cx="206" cy="124" r="4" fill="#16303a"/>
+        <ellipse cx="192" cy="136" rx="6" ry="4.5" fill="#16303a"/>
+        <path d="M252 262 C246 222 256 190 280 180 L284 156 L298 170 C310 168 322 172 330 178 L342 160 L344 186 C358 200 360 232 350 262 Z" fill="#7d8a7d"/>
+        <ellipse cx="314" cy="196" rx="16" ry="12" fill="#d7dfd5"/>
+        <path d="M302 186 Q306 182 310 186 M320 186 Q324 182 328 186" fill="none" stroke="#16303a" stroke-width="3" stroke-linecap="round"/>
+        <path d="M312 196 L318 196 L315 200 Z" fill="#16303a"/>
+        <path d="M350 262 C376 258 384 228 368 214" fill="none" stroke="#7d8a7d" stroke-width="12" stroke-linecap="round"/>
+        <rect x="80" y="258" width="280" height="8" rx="4" fill="var(--accent)" opacity="0.35"/>
+        <path d="M70 120 C66 106 80 98 88 108 C96 98 110 106 106 120 C102 132 88 140 88 140 C88 140 74 132 70 120 Z" fill="var(--warm)"/>
+      </svg> 
+    </div>
+
+    <section id="uslugi">
+      <div class="sec-head">
+        <h2>Nasze usługi</h2>
+        <p>Najczęstsze potrzeby zwierząt w naszych gabinetach, bez odsyłania pacjenta po kolejnych badaniach.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-1"/><circle cx="20" cy="12" r="2"/></svg></div>
+          <h3>Badania ogólne</h3>
+          <p>Przeglądy, konsultacje i diagnostyka, także badania krwi i USG na miejscu.</p>
+        </article>
+        <article class="service">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a1 1 0 0 1-.7.3H4v-4a1 1 0 0 1 .3-.7L15 4"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/></svg></div>
+          <h3>Szczepienia</h3>
+          <p>Szczepienia obowiązkowe i zalecane, książeczka zdrowia oraz przypomnienia o terminach.</p>
+        </article>
+        <article class="service">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9"/><path d="m14.5 14.5 5.5 5.5"/><path d="M8.1 8.1 12 12"/></svg></div>
+          <h3>Zabiegi chirurgiczne</h3>
+          <p>Sterylizacje, kastracje, usuwanie zmian skórnych i inne planowe operacje.</p>
+        </article>
+        <article class="service">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div>
+          <h3>Pomoc nagła</h3>
+          <p>Wizyty interwencyjne w godzinach pracy. Zadzwoń, a przygotujemy się na przyjazd.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="o-nas">
+      <div class="sec-head">
+        <h2>Dlaczego PasjoVet</h2>
+        <p>Mały zespół, który zna swoich pacjentów z imienia i prowadzi ich historię leczenia od szczeniaka do seniora.</p>
+      </div>
+      <div class="facts">
+        <div class="fact"><b>2 gabinety</b><span>2 dogodne lokalizacje</span></div>
+        <div class="fact"><b>15 lat</b><span>doświadczenia w leczeniu zwierząt domowych</span></div>
+        <div class="fact"><b>4 lekarzy</b><span>weterynarii z uprawnieniami i specjalizacjami</span></div>
+        <div class="fact"><b>6 dni</b><span>w tygodniu przyjmujemy pacjentów w co najmniej jednym gabinecie</span></div>
+      </div>
+    </section>
+
+    <!--
+    <section id="cennik">
+      <div class="sec-head">
+        <h2>Cennik</h2>
+        <p>Koszt wizyty zależy od zakresu badań. Aktualne ceny podajemy telefonicznie przed umówieniem terminu.</p>
+      </div>
+    </section>
+    -->
+    <section id="kontakt">
+      <div class="sec-head">
+        <h2>Godziny i kontakt</h2>
+      </div>
+      <div class="locations"> 
+        <div class="loc">
+          <h3 class="loc-title">Gabinet Ruda Śląska</h3>
+          <div class="card">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Godziny otwarcia</h4> 
+            <ul class="hours" id="hours-1">
+              <li data-days="1,2,3,4,5"><span>Poniedziałek–piątek</span><span>10:00–18:00</span></li>
+              <li data-days="6"><span>Sobota</span><span>10:00–13:00</span></li> 
+              <li data-days="0"><span>Niedziela</span><span>nieczynne</span></li>
+            </ul>
+            <p class="status" id="status-1" hidden><i></i><span></span></p>
+          </div>
+          <div class="card">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Adres i kontakt</h4> 
+            <div class="contact-lines">
+              <div><small>Adres</small><strong>ul. Pawła Kubiny 20, Ruda Śląska (Wirek)</strong></div> 
+              <div><small>Telefon</small><strong><a href="tel:+48323401048">32 340 10 48</a></strong></div> 
+              <div><small>E-mail</small><strong>@gmail.com</strong></div>
+            </div>
+          </div>
+         <div class="card map-card"> <!-- ZMIANA 7: nowa karta "Dojazd" z mapą. Adres w data-map-query i w linku "Wyznacz trasę" musi być taki sam jak w karcie "Adres i kontakt" powyżej -->
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Dojazd</h4>
+            <div class="map-frame" data-map-query="ul. Pawła Kubiny 20, Ruda Śląska">
+              <div class="map-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Mapa Google wczytuje się dopiero po kliknięciu.</span>
+              </div>
+            </div>
+            <div class="map-actions">
+              <button class="btn" type="button" data-show-map hidden>Pokaż mapę</button>
+              <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Paw%C5%82a%20Kubiny%2020%2C%20Ruda%20%C5%9Al%C4%85ska" target="_blank" rel="noopener noreferrer">Wyznacz trasę</a>
+            </div>
+          </div>
+        </div>  
+        <div class="loc">
+          <h3 class="loc-title">Gabinet Zabrze</h3>
+          <div class="card">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Godziny otwarcia</h4> 
+            <ul class="hours" id="hours-2">
+              <li data-days="1,2,3,4,5"><span>Poniedziałek–piątek</span><span>10:00–15:00</span></li>
+              <li data-days="6"><span>Sobota</span><span>nieczynne</span></li>
+              <li data-days="0"><span>Niedziela</span><span>nieczynne</span></li>
+            </ul>
+            <p class="status" id="status-2" hidden><i></i><span></span></p>
+          </div>
+          <div class="card">
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>Adres i kontakt</h4> 
+            <div class="contact-lines">
+              <div><small>Adres</small><strong>ul. Cisowa 1/24, Zabrze</strong></div> 
+              <div><small>Telefon</small><strong><a href="tel:+48730150991">730 150 991</a></strong></div>
+              <div><small>E-mail</small><strong>@gmail.com</strong></div>
+            </div>
+          </div>
+          <div class="card map-card"> <!-- ZMIANA 7: nowa karta "Dojazd" z mapą. Adres w data-map-query i w linku "Wyznacz trasę" musi być taki sam jak w karcie "Adres i kontakt" powyżej -->
+            <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>Dojazd</h4>
+            <div class="map-frame" data-map-query="ul. Cisowa 1/24, Zabrze">
+              <div class="map-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>Mapa Google wczytuje się dopiero po kliknięciu.</span>
+              </div>
+            </div>
+            <div class="map-actions">
+              <button class="btn" type="button" data-show-map hidden>Pokaż mapę</button>
+              <a class="btn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=ul.%20Cisowa%201%2F24%2C%20Zabrze" target="_blank" rel="noopener noreferrer">Wyznacz trasę</a>
+            </div>
+        </div>
+        
+      </div>
+      <div class="social"> <!-- ZMIANA 8: nowy blok z przyciskami social mediów. Przycisk, którego nie potrzebujesz, usuń razem z jego <a>...</a> -->
+        <h3 class="social-title">Znajdź nas w sieci</h3>
+        <div class="social-list">
+          <a class="social-btn" href="https://www.facebook.com/profile.php?id=100031996295871" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>Facebook</a> <!-- ZMIANA 8: TUTAJ WKLEJ link do profilu na Facebooku zamiast # (np. https://www.facebook.com/nazwa-profilu) -->
+          <a class="social-btn" href="https://www.instagram.com/xsandra.x2/" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>Instagram</a> <!-- ZMIANA 8: TUTAJ WKLEJ link do profilu na Instagramie zamiast # (np. https://www.instagram.com/nazwa-profilu) -->
+          <a class="social-btn" href="https://www.youtube.com/watch?v=IxX_QHay02M&list=RDIxX_QHay02M&start_radio=1" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg>YouTube</a> <!-- ZMIANA 8: TUTAJ WKLEJ link do kanału na YouTube zamiast # (np. https://www.youtube.com/@nazwa-kanalu) -->
+        </div>
+      </div>
+    </section>
+
+  <!-- <section id="rezerwacja">
+      <div class="book">
+        <div>
+          <h2>Umów wizytę online</h2>
+          <p>Wybierz dogodny termin, a potwierdzimy go telefonicznie w godzinach pracy gabinetu.</p>
+        </div>
+        <a class="btn" href="#kontakt">Zarezerwuj termin</a>
+      </div>
+    </section>
+  -->
+  </main>
+
+  <footer>
+    <span> PasjoVet © </span>
+    <span>Pomoc nagła w godzinach otwarcia: 500 100 200</span>
+  </footer>
+</div>
+<script>
+(function () {
+  try {
+    var now = new Date();
+    var day = now.getDay();
+    var minutes = now.getHours() * 60 + now.getMinutes();
+    try {
+      var map = {};
+      new Intl.DateTimeFormat('en-US', { timeZone: 'Europe/Warsaw', weekday: 'short', hour: 'numeric', minute: 'numeric', hourCycle: 'h23' })
+        .formatToParts(now).forEach(function (p) { map[p.type] = p.value; });
+      day = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[map.weekday];
+      minutes = parseInt(map.hour, 10) * 60 + parseInt(map.minute, 10);
+    } catch (e) {}
+    function toMin(h, m) { return parseInt(h, 10) * 60 + parseInt(m, 10); }
+    // ZMIANA 6: godziny nie są już wpisane drugi raz w skrypcie. Skrypt czyta je z kart w HTML (np. "10:00–18:00"), a wpis "nieczynne" oznacza zamknięte. Wystarczy zmienić godziny w karcie, a status "Teraz otwarte" zmieni się sam.
+    document.querySelectorAll('.hours').forEach(function (list) {
+      var slots = {};
+      var items = list.querySelectorAll('li');
+      for (var i = 0; i < items.length; i++) {
+        var li = items[i];
+        var days = li.getAttribute('data-days').split(',');
+        var spans = li.querySelectorAll('span');
+        var m = /(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})/.exec(spans[spans.length - 1].textContent);
+        for (var j = 0; j < days.length; j++) {
+          if (m) slots[days[j]] = [toMin(m[1], m[2]), toMin(m[3], m[4])];
+          if (days[j] === String(day)) li.classList.add('today');
+        }
+      }
+      var status = list.parentNode.querySelector('.status');
+      var text = status.querySelector('span');
+      var slot = slots[String(day)];
+      var open = slot && minutes >= slot[0] && minutes < slot[1];
+      status.className = 'status ' + (open ? 'open' : 'closed');
+      text.textContent = open ? 'Teraz otwarte' : 'Teraz zamknięte';
+      status.hidden = false;
+    });
+  } catch (e) {}
+})();
+</script>
+<script>
+(function () {
+  // ZMIANA 7: mapa Google wczytuje się dopiero po kliknięciu "Pokaż mapę" (dzięki temu strona nie ładuje Google bez zgody odwiedzającego). Przycisk jest ukryty, dopóki działa JavaScript.
+  document.querySelectorAll('[data-show-map]').forEach(function (btn) {
+    btn.hidden = false;
+    btn.addEventListener('click', function () {
+      var frame = btn.closest('.map-card').querySelector('.map-frame');
+      var q = frame.getAttribute('data-map-query');
+      var f = document.createElement('iframe');
+      f.src = 'https://www.google.com/maps?q=' + encodeURIComponent(q) + '&output=embed';
+      f.title = 'Mapa dojazdu: ' + q;
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      frame.innerHTML = '';
+      frame.appendChild(f);
+      btn.hidden = true;
+    });
+  });
+  // ZMIANA 8: dopóki w przycisku social mediów jest href="#", kliknięcie nic nie robi (strona nie skacze na górę). Po wklejeniu prawdziwego linku przycisk działa normalnie.
+  document.querySelectorAll('.social-btn[href="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
+})();
+</script>
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  var moon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  var sun = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+  function current() {
+    var a = root.getAttribute('data-theme');
+    if (a === 'dark' || a === 'light') return a;
+    return mq && mq.matches ? 'dark' : 'light';
+  }
+  function render() {
+    var dark = current() === 'dark';
+    btn.innerHTML = (dark ? sun : moon) + '<span class="label">' + (dark ? 'Jasny motyw' : 'Ciemny motyw') + '</span>';
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    btn.hidden = false; // ZMIANA 2: pokazanie przycisku po uruchomieniu skryptu
+  }
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('pasjovet-theme', next); } catch (e) {}
+    render();
+  });
+  if (mq && mq.addEventListener) mq.addEventListener('change', render);
+  render();
+})();
+</script>
+</html>
